@@ -4,7 +4,7 @@
 [![Docs](docs/html/index.html)](docs/html/index.html)
 
 ## Исходный код
-[GitHub](https://github.com/yourusername/zags-sorting)
+[GitHub](https://github.com/egoridze74/Programming-Techniques-Lab1)
 
 ## Графики
 ![sort_times.png](sort_times.png)
