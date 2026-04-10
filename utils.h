@@ -9,6 +9,7 @@
 #include "zags_record.h"
 #include <chrono>
 #include <vector>
+#include <iostream>
 
 
 /**
@@ -38,8 +39,8 @@ double measure_time(Func sort_func, const std::vector<ZagsRecord>& original_data
     auto start = std::chrono::high_resolution_clock::now();
     sort_func(copy);
     auto end = std::chrono::high_resolution_clock::now();
-    double time = std::chrono::duration<double, std::milli>(end - start).count()
-    std::cout << time;
+    double time = std::chrono::duration<double, std::milli>(end - start).count();
+    std::cout << time << std::endl;
     return time;
 }
 

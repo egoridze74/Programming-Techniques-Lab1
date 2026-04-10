@@ -27,7 +27,7 @@ void shaker_sort(std::vector<ZagsRecord>& arr) {
         if (!swapped) break;
         --end;
         for (size_t i = end; i > start; --i) {
-            if (arr[i] > arr[i - 1]) {
+            if (arr[i] < arr[i - 1]) {
                 std::swap(arr[i], arr[i - 1]);
                 swapped = true;
             }
@@ -36,23 +36,22 @@ void shaker_sort(std::vector<ZagsRecord>& arr) {
     } while (swapped);
 }
 
-int partition(std::vector<ZagsRecord>& arr, int low, int high) {
-    ZagsRecord pivot = arr[high];
-    int i = low - 1;
-    for (int j = low; j < high; ++j) {
-        if (arr[j] < pivot) {
-            ++i;
+void quick_sort(std::vector<ZagsRecord>& arr, int low, int high) {
+    if (low >= high) return;
+    
+    int i = low, j = high;
+    ZagsRecord pivot = arr[low + (high - low) / 2];
+    
+    while (i <= j) {
+        while (arr[i] < pivot) i++;
+        while (arr[j] > pivot) j--;
+        if (i <= j) {
             std::swap(arr[i], arr[j]);
+            i++;
+            j--;
         }
     }
-    std::swap(arr[++i], arr[high]);
-    return i;
-}
-
-void quick_sort(std::vector<ZagsRecord>& arr, int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high);
-        quick_sort(arr, low, pi - 1);
-        quick_sort(arr, pi + 1, high);
-    }
+    
+    if (low < j) quick_sort(arr, low, j);
+    if (i < high) quick_sort(arr, i, high);
 }

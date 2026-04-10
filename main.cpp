@@ -31,7 +31,7 @@
  */
 int main() {
     std::ofstream times("times.csv");
-    times << "size,selection_ms,shaker_ms,quicksort_ms,stdsort_ms\n";
+    times << "size,selection,shaker,quicksort,stdsort\n";
     
     std::vector<std::string> sizes = {"5", "10", "20", "50", "100", "200", "500", "1000", "2000", "5000"};
     
