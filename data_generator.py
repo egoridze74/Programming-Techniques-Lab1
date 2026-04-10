@@ -1,5 +1,6 @@
 import csv
 import random
+from pathlib import Path
 from datetime import datetime, timedelta
 
 
@@ -20,6 +21,9 @@ def gen_fio(is_male):
 
 sizes = [5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000]
 zagss = list(range(1, 101))
+
+data_dir = Path("data")
+data_dir.mkdir(exist_ok=True)
 
 for size in sizes:
     print(f"Generating zags_{size}.csv")
