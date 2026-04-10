@@ -20,7 +20,7 @@
  * 
  * 1. Создание выходного файла times.csv
  * 
- * 2. Цикл по файлам zags_N.csv (N=5,...,50000)
+ * 2. Цикл по файлам zags_N.csv (N=5,...,100000)
  * 
  * 3. Для каждого размера:
  * Загрузка данных ->
@@ -33,7 +33,7 @@ int main() {
     std::ofstream times("times.csv");
     times << "size,selection,shaker,quicksort,stdsort\n";
     
-    std::vector<std::string> sizes = {"5", "10", "20", "50", "100", "200", "500", "1000", "2000", "5000"};
+    std::vector<std::string> sizes = {"5", "10", "20", "50", "100", "200", "500", "1000", "2000", "5000", "10000", "20000", "50000", "100000"};
     
     for (const auto& size_str : sizes) {
         std::string filename = "data/zags_" + size_str + ".csv";
@@ -49,7 +49,7 @@ int main() {
         
         double t_sel = measure_time(selection_sort, data);
         double t_shk = measure_time(shaker_sort, data);
-        double t_qck = measure_time([&](auto& v){ quick_sort(v, 0, v.size()-1); }, data);
+        double t_qck = measure_time([](auto& v){ quick_sort(v, 0, v.size()-1); }, data);
         double t_std = measure_time([](auto& v){ std::sort(v.begin(), v.end()); }, data);
         
         times << n << "," << t_sel << "," << t_shk << "," << t_qck << "," << t_std << "\n";
